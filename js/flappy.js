@@ -84,7 +84,10 @@ function Passaro(alturaJogo) {
     // window.onkeyup = e => voando = false
 
     this.animar = () => {
-        window.onclick = e => this.voando ? this.voando = false : this.voando = true
+        window.onclick = e => {
+            this.elemento.style.animation = 'passaro 500ms'
+            return this.voando ? this.voando = false : this.voando = true
+        }
         const novoY = this.getY() + (this.voando ? 8 : -2)
         const alturaMaxima = alturaJogo - this.elemento.clientHeight
 
@@ -163,6 +166,7 @@ function FlappyBird() {
         // loop do jogo
         const salto = setInterval(() => {
             passaro.voando = false
+            passaro.elemento.style.removeProperty('animation')
         }, 200)
 
         const temporizador = setInterval(() => {
